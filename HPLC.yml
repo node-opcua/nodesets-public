@@ -1,0 +1,152 @@
+namespaceUri: http://spectaris.de/HPLC/
+namespaces:
+  - ua
+  - di
+  - machinery
+  - alias: ns0
+    filename: >-
+      ../../../../../../../../support/opcua-lads/nodesets-public/Opc.Ua.AMB.NodeSet2.xml
+    uri: http://opcfoundation.org/UA/AMB/
+  - alias: ns1
+    filename: ../../../../../../../../support/opcua-lads/nodesets-public/lads.xml
+    uri: http://opcfoundation.org/UA/LADS/
+namespaceMetadatas:
+  - browseName: http://spectaris.de/HPLC/
+    typeDefinition: ua:NamespaceMetadataType
+    componentOf: /ua:Objects/ua:Server/ua:Namespaces
+objectTypes:
+  - browseName: HPLCDeviceType
+    subtypeOf: ns1:LADSDeviceType
+    addIns:
+      - browseName: machinery:Components
+        typeDefinition: ns1:ComponentSetType
+        components:
+          - browseName: AutoSampler
+            typeDefinition: ns1:LADSComponentType
+          - browseName: Pump
+            typeDefinition: ns1:LADSComponentType
+          - browseName: DAD
+            typeDefinition: ns1:LADSComponentType
+          - browseName: ColumnCompartment
+            typeDefinition: ns1:LADSComponentType
+    components:
+      - browseName: ns1:FunctionalUnitSet
+        typeDefinition: ns1:FunctionalUnitSetType
+        components:
+          - browseName: HPLCUnit
+            typeDefinition: HPLCUnitType
+      - browseName: ns1:OperationCounters
+        typeDefinition: ns1:LADSOperationCountersType
+    properties:
+      - browseName: di:Manufacturer
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: Agilent
+        typeDefinition: ua:PropertyType
+      - browseName: di:Model
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: G4294B
+        typeDefinition: ua:PropertyType
+  - browseName: HPLCUnitType
+    subtypeOf: ns1:FunctionalUnitType
+    components:
+      - browseName: ns1:StateMachine
+        typeDefinition: ns1:FunctionalUnitStateMachineType
+      - browseName: ns1:ProgramManager
+        displayName: Program Manager
+        typeDefinition: ns1:ProgramManagerType
+      - browseName: ns1:FunctionSet
+        typeDefinition: ns1:FunctionSetType
+        components:
+          - browseName: Pump
+            typeDefinition: ns1:AnalogControlFunctionWithComposedTargetValueType
+          - browseName: ColumnOven
+            typeDefinition: ns1:AnalogControlFunctionType
+          - browseName: Valve
+            typeDefinition: ns1:MultiStateDiscreteControlFunctionType
+          - browseName: AutoSampler
+            typeDefinition: ns1:AnalogControlFunctionWithComposedTargetValueType
+          - browseName: DAD
+            typeDefinition: ns1:MultiAnalogSensorFunctionType
+      - browseName: ns1:Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: ns1:CurrentRuntime
+            dataType: ua:Duration
+            value: 0
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:CurrentStepName
+            dataType: ua:LocalizedText
+            value:
+              locale: null
+              text: null
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:CurrentStepNumber
+            dataType: ua:UInt32
+            value: 0
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:CurrentStepRuntime
+            dataType: ua:Duration
+            value: 0
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:EstimatedRunTime
+            dataType: ua:Duration
+            value: 0
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:EstimatedStepNumbers
+            dataType: ua:UInt32
+            value: 0
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:EstimatedStepRuntime
+            dataType: ua:Duration
+            value: 0
+            typeDefinition: ua:PropertyType
+          - browseName: ns1:Name
+            dataType: ua:String
+            value: ''
+            typeDefinition: ua:PropertyType
+variableTypes:
+  - browseName: ChromSensorValueType
+    subtypeOf: ua:AnalogUnitRangeType
+    components:
+      - browseName: Wavelength
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+    properties:
+      - browseName: ua:EngineeringUnits
+        dataType: ua:EUInformation
+        typeDefinition: ua:PropertyType
+      - browseName: ua:EURange
+        dataType: ua:Range
+        typeDefinition: ua:PropertyType
+    dataType: ua:Double
+  - browseName: SpectrumSensorValueType
+    subtypeOf: ua:AnalogUnitRangeType
+    components:
+      - browseName: Range
+        dataType: ua:Range
+        valueRank: -2
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: Step
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+    properties:
+      - browseName: ua:EngineeringUnits
+        dataType: ua:EUInformation
+        typeDefinition: ua:PropertyType
+      - browseName: ua:EURange
+        dataType: ua:Range
+        typeDefinition: ua:PropertyType
+    dataType: ua:Double
+    valueRank: 1
+instances:
+  - browseName: AgilentCompactLC
+    typeDefinition: HPLCDeviceType
+    componentOf: /ua:Objects/di:DeviceSet

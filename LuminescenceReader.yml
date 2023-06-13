@@ -1,0 +1,159 @@
+namespaceUri: http://spectaris.de/LuminescenceReader/
+namespaces:
+  - ua
+  - di
+  - machinery
+  - alias: ns0
+    filename: ../../support/opcua-lads/nodesets-public/Opc.Ua.AMB.NodeSet2.xml
+    uri: http://opcfoundation.org/UA/AMB/
+  - alias: ns1
+    filename: ../../support/opcua-lads/nodesets-public/lads.xml
+    uri: http://opcfoundation.org/UA/LADS/
+namespaceMetadatas:
+  - browseName: http://spectaris.de/LuminescenceReader/
+    typeDefinition: ua:NamespaceMetadataType
+    componentOf: /ua:Objects/ua:Server/ua:Namespaces
+dataTypes:
+  - browseName: InjectorModeEnum
+    subtypeOf: ua:Enumeration
+    enum:
+      - PerPlate
+      - PerWell
+  - browseName: ShakerModeEnum
+    subtypeOf: ua:Enumeration
+    enum:
+      - Linear
+      - Orbital
+      - DoubleOrbital
+objectTypes:
+  - browseName: LuminescenceReaderDeviceType
+    subtypeOf: ns1:LADSDeviceType
+    addIns:
+      - browseName: machinery:Components
+        typeDefinition: ns1:ComponentSetType
+        components:
+          - browseName: Injector1
+            typeDefinition: ns1:LADSComponentType
+          - browseName: Injector2
+            typeDefinition: ns1:LADSComponentType
+          - browseName: Injector3
+            typeDefinition: ns1:LADSComponentType
+          - browseName: PhotoMultiplier
+            typeDefinition: ns1:LADSComponentType
+    components:
+      - browseName: ns1:FunctionalUnitSet
+        typeDefinition: ns1:FunctionalUnitSetType
+        organizes:
+          - browseName: LuminenscenceReaderUnit
+            typeDefinition: LuminescenceReaderUnitType
+      - browseName: ns1:OperationCounters
+        typeDefinition: ns1:LADSOperationCountersType
+    properties:
+      - browseName: di:Manufacturer
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: Berthold
+        typeDefinition: ua:PropertyType
+      - browseName: di:ManufacturerUri
+        dataType: ua:String
+        value: berthold.com/centro/lb963
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:Model
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: Centro LB963
+        typeDefinition: ua:PropertyType
+      - browseName: di:ProductCode
+        dataType: ua:String
+        value: 70325-20
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceManual
+        dataType: ua:String
+        value: >-
+          https://www.berthold.com/en/bioanalytic/products/microplate-readers/centro-lb963/
+        typeDefinition: ua:PropertyType
+  - browseName: LuminescenceReaderUnitType
+    subtypeOf: ns1:FunctionalUnitType
+    components:
+      - browseName: ns1:FunctionSet
+        typeDefinition: ns1:FunctionSetType
+        components:
+          - browseName: Cover
+            typeDefinition: ns1:CoverFunctionType
+          - browseName: Injector1
+            typeDefinition: ns1:AnalogControlFunctionWithTotalizerType
+            properties:
+              - browseName: Speed
+                dataType: ua:UInt32
+                value: 0
+                typeDefinition: ua:AnalogUnitRangeType
+              - browseName: Mode
+                dataType: InjectorModeEnum
+                value: 0
+                typeDefinition: ua:PropertyType
+          - browseName: Injector2
+            typeDefinition: ns1:AnalogControlFunctionWithTotalizerType
+            properties:
+              - browseName: Mode
+                dataType: InjectorModeEnum
+                value: 0
+                typeDefinition: ua:PropertyType
+              - browseName: Speed
+                dataType: ua:UInt32
+                value: 0
+                typeDefinition: ua:AnalogUnitRangeType
+          - browseName: Injector3
+            typeDefinition: ns1:AnalogControlFunctionWithTotalizerType
+            properties:
+              - browseName: Mode
+                dataType: InjectorModeEnum
+                value: 0
+                typeDefinition: ua:PropertyType
+              - browseName: Speed
+                dataType: ua:UInt32
+                value: 0
+                typeDefinition: ua:AnalogUnitRangeType
+          - browseName: ShakerController
+            typeDefinition: ns1:AnalogControlFunctionType
+            components:
+              - browseName: Amplitude
+                dataType: ua:Double
+                value: 0
+                typeDefinition: ua:AnalogUnitRangeType
+            properties:
+              - browseName: Mode
+                dataType: ShakerModeEnum
+                value: 0
+                typeDefinition: ua:PropertyType
+          - browseName: TemperatureController
+            typeDefinition: ns1:AnalogControlFunctionType
+        organizes:
+          - browseName: WastePump
+            typeDefinition: ns1:StartStopControlFunctionType
+          - browseName: LuminescenceSensor
+            typeDefinition: ns1:AnalogSensorFunctionType
+      - browseName: ns1:Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: ns1:StartProgram
+            nodeClass: Method
+          - browseName: ns1:Stop
+            nodeClass: Method
+          - browseName: ns1:Abort
+            nodeClass: Method
+      - browseName: ns1:StateMachine
+        typeDefinition: ns1:FunctionalUnitStateMachineType
+instances:
+  - browseName: LuminenscenceReaderDevice
+    typeDefinition: LuminescenceReaderDeviceType
+    componentOf: /ua:Objects/di:DeviceSet
+  - browseName: LuminenscenceReaderUnit
+    typeDefinition: LuminescenceReaderUnitType
+  - browseName: LuminescenceSensor
+    typeDefinition: ns1:AnalogSensorFunctionType
+  - browseName: WastePump
+    typeDefinition: ns1:StartStopControlFunctionType

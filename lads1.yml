@@ -1,0 +1,1633 @@
+namespaceUri: http://opcfoundation.org/UA/LADS/
+namespaces:
+  - ua
+  - di
+  - machinery
+  - alias: ns0
+    filename: ../../support/opcua-lads/nodesets-public/Opc.Ua.AMB.NodeSet2.xml
+    uri: http://opcfoundation.org/UA/AMB/
+namespaceMetadatas:
+  - browseName: http://opcfoundation.org/UA/LADS/
+    typeDefinition: ua:NamespaceMetadataType
+    componentOf: /ua:Objects/ua:Server/ua:Namespaces
+dataTypes:
+  - browseName: KeyValueType
+    subtypeOf: ua:Structure
+    fields:
+      - name: Key
+        dataType: ua:String
+      - name: Value
+        dataType: ua:String
+  - browseName: MaintenanceTaskStopResultEnum
+    subtypeOf: ua:Enumeration
+    enum:
+      - name: Success
+        description: The maintenance task stopped successfully.
+        value: 0
+      - name: Failure
+        description: The maintenance task stopped with failure.
+        value: 1
+      - name: Undetermined
+        description: The status of the maintenance task upon stopping cannot be determined.
+        value: 2
+  - browseName: SampleInfoType
+    subtypeOf: ua:Structure
+    fields:
+      - name: ContainerId
+        dataType: ua:String
+      - name: SampleId
+        dataType: ua:String
+      - name: Position
+        dataType: ua:String
+      - name: CustomData
+        dataType: ua:String
+eventTypes:
+  - browseName: MaintenanceTaskType
+    subtypeOf: di:MaintenanceRequiredAlarmType
+    interfaces:
+      - browseName: ns0:IMaintenanceEventType
+        nodeClass: ObjectType
+        subtypeOf: ua:BaseInterfaceType
+        components:
+          - browseName: ns0:MaintenanceState
+            typeDefinition: ns0:MaintenanceEventStateMachineType
+        properties:
+          - browseName: ns0:ConfigurationChanged
+            dataType: ua:Boolean
+            value: false
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:EstimatedDowntime
+            dataType: ua:Duration
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:MaintenanceMethod
+            dataType: ns0:MaintenanceMethodEnum
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:MaintenanceSupplier
+            dataType: ns0:NameNodeIdDataType
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:PartsOfAssetReplaced
+            dataType: ns0:NameNodeIdDataType
+            valueRank: 1
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:PartsOfAssetServiced
+            dataType: ns0:NameNodeIdDataType
+            valueRank: 1
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:PlannedDate
+            dataType: ua:UtcTime
+            value: 1601-01-01T00:00:00.000Z
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: ns0:QualificationOfPersonnel
+            dataType: ns0:NameNodeIdDataType
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+    components:
+      - browseName: Start
+        nodeClass: Method
+        modellingRule: Optional
+      - browseName: Stop
+        nodeClass: Method
+        modellingRule: Optional
+        properties:
+          - browseName: ua:InputArguments
+            dataType: ua:Argument
+            value:
+              - name: MaintenanceTaskStopResult
+                dataType:
+                  identifierType: 1
+                  value: 3000
+                  namespace: 4
+                valueRank: -1
+                arrayDimensions: []
+                description:
+                  locale: null
+                  text: null
+              - name: Comment
+                dataType:
+                  identifierType: 1
+                  value: 21
+                  namespace: 0
+                valueRank: -1
+                arrayDimensions: []
+                description:
+                  locale: null
+                  text: null
+            typeDefinition: ua:PropertyType
+      - browseName: Reset
+        nodeClass: Method
+        modellingRule: Optional
+      - browseName: ns0:MaintenanceState
+        typeDefinition: ns0:MaintenanceEventStateMachineType
+    properties:
+      - browseName: LastExecutionDate
+        dataType: ua:UtcTime
+        value: 1601-01-01T00:00:00.000Z
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: RecurrencePeriod
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: LastOperatingTime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: NextOperatingTime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: LastOperatingCycles
+        dataType: ua:UInt32
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: NextOperatingCycles
+        dataType: ua:UInt32
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:ConfigurationChanged
+        dataType: ua:Boolean
+        value: false
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:EstimatedDowntime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:MaintenanceMethod
+        dataType: ns0:MaintenanceMethodEnum
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:MaintenanceSupplier
+        dataType: ns0:NameNodeIdDataType
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:PartsOfAssetReplaced
+        dataType: ns0:NameNodeIdDataType
+        valueRank: 1
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:PartsOfAssetServiced
+        dataType: ns0:NameNodeIdDataType
+        valueRank: 1
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:PlannedDate
+        dataType: ua:UtcTime
+        value: 1601-01-01T00:00:00.000Z
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:QualificationOfPersonnel
+        dataType: ns0:NameNodeIdDataType
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+stateMachines:
+  - browseName: FunctionalStateMachineType
+    isAbstract: true
+    subtypeOf: ua:FiniteStateMachineType
+    states:
+      - name: Stopping
+        value: 6
+      - name: Running
+        value: 5
+      - name: Clearing
+        value: 3
+      - name: Aborting
+        value: 2
+      - name: Aborted
+        value: 1
+      - name: Stopped
+        isInitialState: true
+        value: 4
+    transitions:
+      - from: Running
+        to: Stopping
+        value: 8
+      - from: Clearing
+        to: Stopped
+        value: 7
+      - from: Running
+        to: Aborting
+        value: 6
+      - from: Stopped
+        to: Running
+        value: 5
+      - from: Stopping
+        to: Stopped
+        value: 4
+      - from: Aborting
+        to: Aborted
+        value: 2
+      - from: Aborted
+        to: Clearing
+        value: 1
+    methods:
+      - browseName: Abort
+        displayName: Abort
+      - browseName: Clear
+        displayName: Clear
+      - browseName: Stop
+        displayName: Stop
+  - browseName: ActiveProgramStateMachineType
+    description: Represents the state of the currently active program in a LADS Device
+    subtypeOf: FunctionalStateMachineType
+    states: []
+    transitions: []
+    methods:
+      - browseName: Start
+        inputArguments:
+          - name: Properties
+            dataType: KeyValueType
+            valueRank: -3
+            description:
+              locale: null
+              text: A Key/Value set for parameterization of the program
+          - name: JobID
+            dataType: ua:String
+            description:
+              locale: null
+              text: The JobID assigned to this program
+          - name: SupervisoryTaskID
+            dataType: ua:String
+            description:
+              locale: null
+              text: The ID of the SupervisoryTask
+          - name: Samples
+            dataType: SampleInfoType
+            description:
+              locale: null
+              text: >-
+                An array of the SampleInfoType that describes the samples
+                processed in this program execution
+          - name: ProgramTemplateID
+            dataType: ua:String
+            description:
+              locale: null
+              text: >-
+                The ID of the program template that is used for the current
+                execution
+        outputArguments:
+          - name: DeviceProgramRunID
+            dataType: ua:String
+            description:
+              locale: null
+              text: The ID of the created program run
+        displayName: Start
+  - browseName: ControlFunctionStateMachineType
+    description: Represents the state of a Function in a LADS Device
+    subtypeOf: FunctionalStateMachineType
+    states: []
+    transitions: []
+    methods:
+      - browseName: Start
+        inputArguments:
+          - name: TargetValue
+            dataType: ua:Number
+            description:
+              locale: null
+              text: A Key/Value set for parameterization of the function
+        displayName: Start
+  - browseName: CoverStateMachineType
+    subtypeOf: ua:FiniteStateMachineType
+    states:
+      - name: Opened
+        value: 4
+      - name: Locked
+        value: 3
+      - name: Error
+        value: 2
+      - name: Closed
+        value: 1
+    transitions:
+      - from: Error
+        to: Opened
+        value: 7
+      - from: Closed
+        to: Error
+        value: 6
+      - from: Locked
+        to: Error
+        value: 5
+      - from: Locked
+        to: Closed
+        value: 4
+      - from: Closed
+        to: Locked
+        value: 3
+      - from: Closed
+        to: Opened
+        value: 2
+      - from: Opened
+        to: Closed
+        value: 1
+    methods:
+      - browseName: Close
+        displayName: Close
+      - browseName: Lock
+        displayName: Lock
+      - browseName: Open
+        displayName: Open
+      - browseName: Unlock
+        displayName: Unlock
+      - browseName: Reset
+        displayName: Reset
+  - browseName: FunctionalStateMachineType
+    isAbstract: true
+    subtypeOf: ua:FiniteStateMachineType
+    states:
+      - name: Stopping
+        value: 6
+      - name: Running
+        value: 5
+      - name: Clearing
+        value: 3
+      - name: Aborting
+        value: 2
+      - name: Aborted
+        value: 1
+      - name: Stopped
+        isInitialState: true
+        value: 4
+    transitions:
+      - from: Running
+        to: Stopping
+        value: 8
+      - from: Clearing
+        to: Stopped
+        value: 7
+      - from: Running
+        to: Aborting
+        value: 6
+      - from: Stopped
+        to: Running
+        value: 5
+      - from: Stopping
+        to: Stopped
+        value: 4
+      - from: Aborting
+        to: Aborted
+        value: 2
+      - from: Aborted
+        to: Clearing
+        value: 1
+  - browseName: FunctionalUnitStateMachineType
+    description: Represents the state of a FunctionalUnit in a LADS Device
+    subtypeOf: FunctionalStateMachineType
+    states: []
+    transitions: []
+    methods:
+      - browseName: Start
+        inputArguments:
+          - name: Properties
+            dataType: ua:KeyValuePair
+            valueRank: 1
+            description:
+              locale: null
+              text: >-
+                A set of Properties that parameterize the execution of the
+                Functional Unit
+        displayName: Start
+      - browseName: StartProgram
+        inputArguments:
+          - name: Properties
+            dataType: KeyValueType
+            valueRank: 1
+            description:
+              locale: null
+              text: A Key/Value set for parameterization of the program.
+          - name: JobID
+            dataType: ua:String
+            description:
+              locale: null
+              text: null
+          - name: SupervisoryTaskID
+            dataType: ua:String
+            description:
+              locale: null
+              text: The ID of the SupervisoryTask.
+          - name: Samples
+            dataType: SampleInfoType
+            valueRank: 1
+            description:
+              locale: null
+              text: >-
+                An array of the SampleInfoType that describes the samples
+                processed in this program execution.
+          - name: ProgramTemplateID
+            dataType: ua:String
+            description:
+              locale: null
+              text: >-
+                The ID of the program template that is used for the current
+                execution.
+        outputArguments:
+          - name: DeviceProgramRunID
+            dataType: ua:String
+            description:
+              locale: null
+              text: The ID of the created program run.
+        displayName: StartProgram
+  - browseName: LADSDeviceStateMachineType
+    subtypeOf: ua:FiniteStateMachineType
+    states:
+      - name: Standby
+        value: 5
+      - name: Shutdown
+        value: 3
+      - name: Operating
+        value: 1
+      - name: Maintenance
+        value: 2
+      - name: Powerup
+        isInitialState: true
+        value: 4
+    transitions:
+      - from: Standby
+        to: Operating
+        value: 1
+      - from: Powerup
+        to: Operating
+        value: 7
+      - from: Operating
+        to: Standby
+        value: 6
+      - from: Operating
+        to: Shutdown
+        value: 5
+      - from: Operating
+        to: Maintenance
+        value: 4
+      - from: Maintenance
+        to: Shutdown
+        value: 3
+      - from: Maintenance
+        to: Operating
+        value: 2
+    methods:
+      - browseName: GotoMaintenance
+        displayName: GotoMaintenance
+      - browseName: GotoOperating
+        displayName: GotoOperating
+      - browseName: GotoShutdown
+        displayName: GotoShutdown
+      - browseName: GotoStandby
+        displayName: GotoStandby
+  - browseName: RunningStateMachineType
+    subtypeOf: ua:FiniteStateMachineType
+    states:
+      - name: Unsuspending
+        value: 12
+      - name: Unholding
+        value: 11
+      - name: Suspending
+        value: 10
+      - name: Suspended
+        value: 9
+      - name: Starting
+        value: 8
+      - name: Resetting
+        value: 7
+      - name: Idle
+        value: 6
+      - name: Holding
+        value: 5
+      - name: Held
+        value: 4
+      - name: Execute
+        value: 3
+      - name: Completing
+        value: 2
+      - name: Complete
+        value: 1
+    transitions:
+      - from: Unholding
+        to: Holding
+        value: 19
+      - from: Unsuspending
+        to: Holding
+        value: 18
+      - from: Suspended
+        to: Holding
+        value: 17
+      - from: Starting
+        to: Holding
+        value: 16
+      - from: Suspending
+        to: Holding
+        value: 15
+      - from: Unholding
+        to: Execute
+        value: 14
+      - from: Held
+        to: Unholding
+        value: 13
+      - from: Holding
+        to: Held
+        value: 12
+      - from: Execute
+        to: Holding
+        value: 11
+      - from: Unsuspending
+        to: Execute
+        value: 10
+      - from: Suspended
+        to: Unsuspending
+        value: 9
+      - from: Suspending
+        to: Suspended
+        value: 8
+      - from: Execute
+        to: Suspending
+        value: 7
+      - from: Resetting
+        to: Idle
+        value: 6
+      - from: Complete
+        to: Resetting
+        value: 5
+      - from: Completing
+        to: Complete
+        value: 4
+      - from: Execute
+        to: Completing
+        value: 3
+      - from: Starting
+        to: Execute
+        value: 2
+      - from: Idle
+        to: Starting
+        value: 1
+    methods:
+      - browseName: Hold
+        displayName: Hold
+      - browseName: Reset
+        displayName: Reset
+      - browseName: Suspend
+        displayName: Suspend
+      - browseName: ToComplete
+        displayName: ToComplete
+      - browseName: Unhold
+        displayName: Unhold
+      - browseName: Unsuspend
+        displayName: Unsuspend
+objectTypes:
+  - browseName: ActiveProgramType
+    description: The currently active program on the device.
+    components:
+      - browseName: ProgramTemplate
+        typeDefinition: ProgramTemplateType
+    properties:
+      - browseName: CurrentPauseTime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: CurrentRuntime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: CurrentStepName
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: CurrentStepNumber
+        dataType: ua:UInt32
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: CurrentStepRuntime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: EstimatedRunTime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: EstimatedStepNumbers
+        dataType: ua:UInt32
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: EstimatedStepRuntime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: DeviceProgramRunID
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: FunctionType
+    isAbstract: true
+    description: Abstract function type
+    subtypeOf: di:TopologyElementType
+    components:
+      - browseName: Configuration
+        modellingRule: Optional
+        typeDefinition: di:FunctionalGroupType
+      - browseName: FunctionSet
+        displayName: Function Set
+        modellingRule: Optional
+        typeDefinition: FunctionSetType
+    properties:
+      - browseName: IsEnabled
+        dataType: ua:Boolean
+        value: false
+        typeDefinition: ua:PropertyType
+  - browseName: BaseControlFunctionType
+    isAbstract: true
+    subtypeOf: FunctionType
+    components:
+      - browseName: AlarmMonitor
+        modellingRule: Optional
+        typeDefinition: ua:ExclusiveDeviationAlarmType
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: ua:CurrentState
+            value:
+              locale: null
+              text: null
+            typeDefinition: ua:FiniteStateVariableType
+          - browseName: Reset
+            nodeClass: Method
+            modellingRule: Optional
+          - browseName: Start
+            nodeClass: Method
+          - browseName: Stop
+            nodeClass: Method
+      - browseName: StateMachine
+        typeDefinition: ControlFunctionStateMachineType
+      - browseName: ContollerTuningParameter
+        modellingRule: Optional
+        typeDefinition: ControllerTuningParameterType
+  - browseName: AnalogControlFunctionType
+    subtypeOf: BaseControlFunctionType
+    components:
+      - browseName: CurrentValue
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: TargetValue
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+  - browseName: AnalogControlFunctionWithComposedTargetValueType
+    subtypeOf: AnalogControlFunctionType
+    components:
+      - browseName: TargetValue
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: TargetValueSet
+        typeDefinition: VariableSetType
+  - browseName: AnalogControlFunctionWithTotalizerType
+    subtypeOf: AnalogControlFunctionType
+    components:
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: TotalizedValue
+            dataType: ua:Double
+            valueRank: -2
+            value: 0
+            typeDefinition: ua:AnalogUnitRangeType
+          - browseName: ResetTotalizer
+            nodeClass: Method
+            modellingRule: Optional
+  - browseName: BaseSensorFunctionType
+    isAbstract: true
+    subtypeOf: FunctionType
+    components:
+      - browseName: AlarmMonitor
+        modellingRule: Optional
+        typeDefinition: ua:ExclusiveLevelAlarmType
+      - browseName: Configuration
+        modellingRule: Optional
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: IsEnabled
+            dataType: ua:Boolean
+            value: false
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+      - browseName: CalibrationValues
+        dataType: ua:Double
+        value: []
+        modellingRule: Optional
+      - browseName: Calibration
+        typeDefinition: di:FunctionalGroupType
+      - browseName: Tuning
+        modellingRule: Optional
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: Damping
+            dataType: ua:Double
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+  - browseName: AnalogSensorArrayFunctionType
+    subtypeOf: BaseSensorFunctionType
+    components:
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: RawValue
+            dataType: ua:Double
+            valueRank: 0
+            value: []
+            typeDefinition: ua:AnalogUnitRangeType
+          - browseName: SensorValue
+            dataType: ua:Double
+            valueRank: 0
+            value: []
+            typeDefinition: ua:AnalogUnitRangeType
+  - browseName: AnalogSensorFunctionType
+    subtypeOf: BaseSensorFunctionType
+    components:
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: SensorValue
+            dataType: ua:Double
+            value: 0
+            typeDefinition: ua:AnalogUnitRangeType
+          - browseName: RawValue
+            dataType: ua:Double
+            value: 0
+            typeDefinition: ua:AnalogUnitRangeType
+  - browseName: AnalogSensorFunctionWithCompensationType
+    subtypeOf: AnalogSensorFunctionType
+    components:
+      - browseName: CompensationValue
+        dataType: ua:Double
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+  - browseName: BaseControlFunctionType
+    isAbstract: true
+    subtypeOf: FunctionType
+  - browseName: BaseSensorFunctionType
+    isAbstract: true
+    subtypeOf: FunctionType
+  - browseName: ComponentSetType
+    subtypeOf: machinery:MachineComponentsType
+    components:
+      - browseName: machinery:<Component>
+        modellingRule: OptionalPlaceholder
+        typeDefinition: LADSComponentType
+    properties:
+      - browseName: ua:NodeVersion
+        dataType: ua:String
+        value: NaN
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: SetType
+    isAbstract: true
+    subtypeOf: ua:FolderType
+    components:
+      - browseName: <SetElement>
+        nodeClass: Object
+        modellingRule: MandatoryPlaceholder
+    properties:
+      - browseName: ua:NodeVersion
+        dataType: ua:String
+        value: NaN
+        typeDefinition: ua:PropertyType
+  - browseName: ControllerParameterSetType
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: ControllerParameterType
+  - browseName: ControllerParameterType
+    components:
+      - browseName: CurrentValue
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: TargetValue
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: Operational
+        modellingRule: Optional
+        typeDefinition: di:FunctionalGroupType
+  - browseName: ControllerTuningParameterType
+  - browseName: CoverFunctionType
+    description: Controls a cover e.g., lid or door.
+    subtypeOf: FunctionType
+    components:
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: ua:CurrentState
+            value:
+              locale: null
+              text: null
+            typeDefinition: ua:FiniteStateVariableType
+      - browseName: StateMachine
+        typeDefinition: CoverStateMachineType
+  - browseName: DiscreteControlFunctionType
+    isAbstract: true
+    subtypeOf: BaseControlFunctionType
+    components:
+      - browseName: CurrentValue
+        valueRank: -2
+        typeDefinition: ua:DiscreteItemType
+      - browseName: TargetValue
+        valueRank: -2
+        typeDefinition: ua:DiscreteItemType
+  - browseName: DiscreteSensorFunctionType
+    isAbstract: true
+    subtypeOf: BaseSensorFunctionType
+    components:
+      - browseName: SensorValue
+        typeDefinition: ua:DiscreteItemType
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+  - browseName: FunctionSetType
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: FunctionType
+  - browseName: FunctionType
+    isAbstract: true
+    description: Abstract function type
+    subtypeOf: di:TopologyElementType
+  - browseName: FunctionalUnitSetType
+    description: Set of Functional Units.
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: FunctionalUnitType
+  - browseName: FunctionalUnitType
+    description: Represents a functional unit of a laboratory- or anlytical device.
+    subtypeOf: di:TopologyElementType
+    interfaces:
+      - browseName: di:ITagNameplateType
+        nodeClass: ObjectType
+        subtypeOf: ua:BaseInterfaceType
+        properties:
+          - browseName: di:AssetId
+            dataType: ua:String
+            value: ''
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: di:ComponentName
+            dataType: ua:LocalizedText
+            value:
+              locale: null
+              text: null
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+    components:
+      - browseName: FunctionSet
+        typeDefinition: FunctionSetType
+      - browseName: di:Identification
+        modellingRule: Optional
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: di:AssetId
+            dataType: ua:String
+            value: ''
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: di:ComponentName
+            dataType: ua:LocalizedText
+            value:
+              locale: null
+              text: null
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+      - browseName: di:Lock
+        typeDefinition: di:LockingServicesType
+      - browseName: ProgramManager
+        displayName: Program Manager
+        modellingRule: Optional
+        typeDefinition: ProgramManagerType
+      - browseName: SupportedPropertiesSet
+        modellingRule: Optional
+        typeDefinition: 'SupportedPropertiesSetType '
+      - browseName: StateMachine
+        typeDefinition: FunctionalUnitStateMachineType
+      - browseName: Operational
+        modellingRule: Optional
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: Hold
+            nodeClass: Method
+            modellingRule: Optional
+          - browseName: Reset
+            nodeClass: Method
+            modellingRule: Optional
+          - browseName: Suspend
+            nodeClass: Method
+            modellingRule: Optional
+          - browseName: Unhold
+            nodeClass: Method
+            modellingRule: Optional
+          - browseName: Unsuspend
+            nodeClass: Method
+            modellingRule: Optional
+          - browseName: ua:EffectiveDisplayName
+            dataType: ua:LocalizedText
+            value:
+              locale: null
+              text: null
+            typeDefinition: ua:PropertyType
+  - browseName: LADSComponentType
+    subtypeOf: di:ComponentType
+    addIns:
+      - browseName: di:Identification
+        typeDefinition: machinery:MachineryComponentIdentificationType
+      - browseName: machinery:Components
+        modellingRule: Optional
+        typeDefinition: ComponentSetType
+    interfaces:
+      - browseName: di:IDeviceHealthType
+        nodeClass: ObjectType
+        subtypeOf: ua:BaseInterfaceType
+        components:
+          - browseName: di:DeviceHealth
+            dataType: di:DeviceHealthEnumeration
+            value: 0
+            modellingRule: Optional
+          - browseName: di:DeviceHealthAlarms
+            modellingRule: Optional
+            typeDefinition: ua:FolderType
+    components:
+      - browseName: di:DeviceHealth
+        dataType: di:DeviceHealthEnumeration
+        value: 0
+        modellingRule: Optional
+      - browseName: di:DeviceHealthAlarms
+        modellingRule: Optional
+        typeDefinition: ua:FolderType
+      - browseName: OperationCounters
+        modellingRule: Optional
+        typeDefinition: LADSOperationCountersType
+      - browseName: Maintenance
+        modellingRule: Optional
+        typeDefinition: LADSMaintenanceSetType
+        properties:
+          - browseName: ua:NodeVersion
+            dataType: ua:String
+            value: NaN
+            typeDefinition: ua:PropertyType
+    properties:
+      - browseName: di:AssetId
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:ComponentName
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceClass
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceManual
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceRevision
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:HardwareRevision
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:Manufacturer
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: di:ManufacturerUri
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:Model
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:ProductCode
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:ProductInstanceUri
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:RevisionCounter
+        dataType: ua:Int32
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:SerialNumber
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:SoftwareRevision
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:OperationalLocation
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:HierarchicalLocation
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: LADSDeviceType
+    description: Base class for laboratory- and analytical devices
+    subtypeOf: di:DeviceType
+    addIns:
+      - browseName: machinery:Components
+        modellingRule: Optional
+        typeDefinition: ComponentSetType
+      - browseName: di:Identification
+        typeDefinition: machinery:MachineryComponentIdentificationType
+    components:
+      - browseName: FunctionalUnitSet
+        typeDefinition: FunctionalUnitSetType
+      - browseName: OperationCounters
+        typeDefinition: LADSOperationCountersType
+      - browseName: StateMachine
+        typeDefinition: LADSDeviceStateMachineType
+      - browseName: Maintenance
+        typeDefinition: LADSMaintenanceSetType
+        properties:
+          - browseName: ua:NodeVersion
+            dataType: ua:String
+            value: NaN
+            typeDefinition: ua:PropertyType
+      - browseName: di:DeviceHealth
+        dataType: di:DeviceHealthEnumeration
+        value: 0
+        modellingRule: Optional
+    properties:
+      - browseName: di:RevisionCounter
+        dataType: ua:Int32
+        value: 0
+        typeDefinition: ua:PropertyType
+      - browseName: di:Manufacturer
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: di:Model
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceManual
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceRevision
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:SoftwareRevision
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:SerialNumber
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:AssetId
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:ComponentName
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceClass
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:HardwareRevision
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: di:ManufacturerUri
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:ProductCode
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:ProductInstanceUri
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:OperationalLocation
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: ns0:HierarchicalLocation
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: LADSMaintenanceSetType
+    subtypeOf: di:FunctionalGroupType
+    components:
+      - browseName: <MaintenanceTask>
+        modellingRule: Optional
+        typeDefinition: MaintenanceTaskType
+  - browseName: LADSOperationCountersType
+    subtypeOf: di:FunctionalGroupType
+    interfaces:
+      - browseName: di:IOperationCounterType
+        nodeClass: ObjectType
+        subtypeOf: ua:BaseInterfaceType
+        properties:
+          - browseName: di:PowerOnDuration
+            dataType: ua:Duration
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: di:OperationDuration
+            dataType: ua:Duration
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+          - browseName: di:OperationCycleCounter
+            dataType: ua:UInteger
+            modellingRule: Optional
+            typeDefinition: ua:PropertyType
+    components:
+      - browseName: LifeTime
+        modellingRule: Optional
+        typeDefinition: di:LifetimeVariableType
+    properties:
+      - browseName: di:OperationCycleCounter
+        dataType: ua:UInteger
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:OperationDuration
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:PowerOnDuration
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: MultiAnalogSensorFunctionType
+    subtypeOf: BaseSensorFunctionType
+    components:
+      - browseName: SensorValueSet
+        typeDefinition: SensorValueSetType
+  - browseName: MultiModeAnalogControlFunctionType
+    subtypeOf: BaseControlFunctionType
+    components:
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: CurrentMode
+            dataType: ua:UInt32
+            valueRank: -2
+            value: 0
+            typeDefinition: ua:MultiStateDiscreteType
+      - browseName: ControllerModeSet
+        typeDefinition: ControllerParameterSetType
+  - browseName: MultiParameterAnalogControlFunctionType
+    subtypeOf: BaseControlFunctionType
+    components:
+      - browseName: ControllerParameterSet
+        typeDefinition: ControllerParameterSetType
+  - browseName: MultiStateDiscreteControlFunctionType
+    subtypeOf: DiscreteControlFunctionType
+    components:
+      - browseName: CurrentValue
+        dataType: ua:UInt32
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:MultiStateDiscreteType
+      - browseName: TargetValue
+        dataType: ua:UInt32
+        valueRank: -2
+        value: 0
+        typeDefinition: ua:MultiStateDiscreteType
+  - browseName: MutliStateDiscreteSensorFunctionType
+    subtypeOf: DiscreteSensorFunctionType
+    components:
+      - browseName: SensorValue
+        typeDefinition: ua:MultiStateDiscreteType
+  - browseName: PidControllerParameterType
+    subtypeOf: ControllerTuningParameterType
+    organizes:
+      - browseName: CtrlP
+        dataType: ua:Double
+        value: []
+        modellingRule: Optional
+      - browseName: CtrlTd
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: CtrlTi
+        dataType: ua:Double
+        valueRank: -2
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+  - browseName: ProgramManagerType
+    description: The functional unit's program manager.
+    subtypeOf: di:TopologyElementType
+    components:
+      - browseName: ActiveProgram
+        typeDefinition: ActiveProgramType
+      - browseName: ProgramTemplateSet
+        typeDefinition: ProgramTemplateSetType
+        methods:
+          - browseName: Download
+            inputArguments:
+              - name: Name
+                dataType: ua:String
+                description:
+                  locale: null
+                  text: null
+            outputArguments:
+              - name: Name
+                dataType: ua:String
+                description:
+                  locale: null
+                  text: null
+              - name: Properties
+                dataType: ua:BaseDataType
+                description:
+                  locale: null
+                  text: null
+              - name: Data
+                dataType: ua:ByteString
+                description:
+                  locale: null
+                  text: null
+              - name: Data2
+                dataType: ua:BaseDataType
+                description:
+                  locale: null
+                  text: null
+            displayName: Download
+          - browseName: Remove
+            inputArguments:
+              - name: Name
+                dataType: ua:String
+                description:
+                  locale: null
+                  text: null
+            displayName: Remove
+          - browseName: Upload
+            inputArguments:
+              - name: Name
+                dataType: ua:String
+                description:
+                  locale: null
+                  text: null
+              - name: Properties
+                dataType: ua:BaseDataType
+                description:
+                  locale: null
+                  text: null
+              - name: Data
+                dataType: ua:ByteString
+                description:
+                  locale: null
+                  text: null
+            displayName: Upload
+      - browseName: ResultSet
+        typeDefinition: ResultSetType
+  - browseName: ProgramTemplateSetType
+    description: Set of program templates.
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: ProgramTemplateType
+  - browseName: ProgramTemplateType
+    description: Program template
+    properties:
+      - browseName: Author
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: Created
+        dataType: ua:DateTime
+        value: 1601-01-01T00:00:00.000Z
+        typeDefinition: ua:PropertyType
+      - browseName: Description
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: Modified
+        dataType: ua:DateTime
+        value: 1601-01-01T00:00:00.000Z
+        typeDefinition: ua:PropertyType
+      - browseName: Name
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: Status
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: Version
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: TemplateId
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+  - browseName: RatebasedAccumulatingControlFunctionType
+    subtypeOf: BaseControlFunctionType
+    components:
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+        organizes:
+          - browseName: CurrentValue
+            dataType: ua:Double
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:AnalogUnitRangeType
+          - browseName: DeltaValue
+            dataType: ua:Double
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:AnalogUnitRangeType
+          - browseName: TargetValue
+            dataType: ua:Double
+            value: 0
+            modellingRule: Optional
+            typeDefinition: ua:AnalogUnitRangeType
+      - browseName: DecreaseRate
+        dataType: ua:Double
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: IncreaseRate
+        dataType: ua:Double
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+  - browseName: ResultFileSetType
+    description: Set of files.
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: ResultFileType
+  - browseName: ResultFileType
+    components:
+      - browseName: File
+        modellingRule: Optional
+        typeDefinition: ua:FileType
+    properties:
+      - browseName: MimeType
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: Name
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: URL
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: ResultSetType
+    description: Results of program runs.
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: ResultType
+  - browseName: ResultType
+    description: Results of a specific program run.
+    components:
+      - browseName: FileSet
+        typeDefinition: ResultFileSetType
+      - browseName: ProgramTemplate
+        typeDefinition: ProgramTemplateType
+      - browseName: VariableSet
+        typeDefinition: VariableSetType
+      - browseName: SupervisoryTaskId
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+    properties:
+      - browseName: Client
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: Description
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: null
+        typeDefinition: ua:PropertyType
+      - browseName: JobId
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: Name
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: SampleIds
+        dataType: ua:String
+        value: []
+        typeDefinition: ua:PropertyType
+      - browseName: Started
+        dataType: ua:DateTime
+        value: 1601-01-01T00:00:00.000Z
+        typeDefinition: ua:PropertyType
+      - browseName: Stopped
+        dataType: ua:DateTime
+        value: 1601-01-01T00:00:00.000Z
+        typeDefinition: ua:PropertyType
+      - browseName: User
+        dataType: ua:String
+        value: ''
+        typeDefinition: ua:PropertyType
+      - browseName: Properties
+        dataType: KeyValueType
+        typeDefinition: ua:PropertyType
+      - browseName: DeviceProgramRunId
+        dataType: ua:String
+        value: ''
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: TotalRuntime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: TotalPauseTime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: EstimateRuntime
+        dataType: ua:Duration
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+  - browseName: VariableSetType
+    subtypeOf: ua:FolderType
+    components:
+      - browseName: <VariableSetElement>
+        nodeClass: Variable
+        modellingRule: OptionalPlaceholder
+      - browseName: <Data>
+        nodeClass: Object
+        modellingRule: OptionalPlaceholder
+    properties:
+      - browseName: NodeVersion
+        dataType: ua:String
+        value: NaN
+        typeDefinition: ua:PropertyType
+  - browseName: SensorValueSetType
+    subtypeOf: VariableSetType
+    components:
+      - browseName: <VariableSetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: ua:AnalogUnitRangeType
+  - browseName: SetType
+    isAbstract: true
+    subtypeOf: ua:FolderType
+  - browseName: StartStopControlFunctionType
+    subtypeOf: BaseControlFunctionType
+  - browseName: 'SupportedPropertiesSetType '
+    displayName: SupportedPropertiesSetType
+    description: >-
+      Set of properties which are supported as members of a properties list
+      argument for method calls e.g., FunctionalUnit.StartFunctions() or
+      ActiveProgram.Start().
+    subtypeOf: SetType
+    components:
+      - browseName: <SetElement>
+        modellingRule: MandatoryPlaceholder
+        typeDefinition: SupportedPropertyType
+  - browseName: SupportedPropertyType
+    description: >-
+      Property which is supported as member of the properties list argument for
+      specific methods e.g., FunctionalUnit.Start() or ActiveProgram.Start().
+      The objects name will serve as property key.The target variable is linked
+      via an Organizes reference.
+  - browseName: TimerFunctionType
+    subtypeOf: BaseControlFunctionType
+    components:
+      - browseName: DifferenceValue
+        dataType: ua:Duration
+        valueRank: -2
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: TargetValue
+        dataType: ua:Duration
+        valueRank: -2
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: CurrentValue
+        dataType: ua:Duration
+        valueRank: -2
+        value: 0
+        modellingRule: Optional
+        typeDefinition: ua:AnalogUnitRangeType
+      - browseName: Operational
+        typeDefinition: di:FunctionalGroupType
+  - browseName: TwoStateDiscreteControlFunctionType
+    subtypeOf: DiscreteControlFunctionType
+    components:
+      - browseName: CurrentValue
+        valueRank: -2
+        value: false
+        typeDefinition: ua:TwoStateDiscreteType
+      - browseName: TargetValue
+        valueRank: -2
+        value: false
+        typeDefinition: ua:TwoStateDiscreteType
+  - browseName: TwoStateDiscreteSensorFunctionType
+    subtypeOf: DiscreteSensorFunctionType
+    components:
+      - browseName: SensorValue
+        typeDefinition: ua:TwoStateDiscreteType
+  - browseName: VariableSetType
+    subtypeOf: ua:FolderType

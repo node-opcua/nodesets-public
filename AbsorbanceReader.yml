@@ -1,0 +1,89 @@
+namespaceUri: http://spectaris.de/AbsorbanceReader/
+namespaces:
+  - ua
+  - di
+  - machinery
+  - alias: ns0
+    filename: >-
+      ../../../../../../../../support/opcua-lads/nodesets-public/Opc.Ua.AMB.NodeSet2.xml
+    uri: http://opcfoundation.org/UA/AMB/
+  - alias: ns1
+    filename: ../../../../../../../../support/opcua-lads/nodesets-public/lads.xml
+    uri: http://opcfoundation.org/UA/LADS/
+namespaceMetadatas:
+  - browseName: http://spectaris.de/AbsorbanceReader/
+    typeDefinition: ua:NamespaceMetadataType
+    componentOf: /ua:Objects/ua:Server/ua:Namespaces
+objectTypes:
+  - browseName: AbsorbanceReaderDeviceType
+    subtypeOf: ns1:LADSDeviceType
+    addIns:
+      - browseName: machinery:Components
+        typeDefinition: ns1:ComponentSetType
+        components:
+          - browseName: LightSource1
+            typeDefinition: AbsorbanceReaderLedType
+          - browseName: LightSource2
+            typeDefinition: AbsorbanceReaderLedType
+          - browseName: LightSource3
+            typeDefinition: AbsorbanceReaderLedType
+          - browseName: LightSource4
+            typeDefinition: AbsorbanceReaderLedType
+    components:
+      - browseName: ns1:FunctionalUnitSet
+        typeDefinition: ns1:FunctionalUnitSetType
+        components:
+          - browseName: AbsorbanceReaderUnit
+            typeDefinition: AbsorbanceReaderUnitType
+      - browseName: ns1:OperationCounters
+        typeDefinition: ns1:LADSOperationCountersType
+    properties:
+      - browseName: di:Manufacturer
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: byonoy
+        typeDefinition: ua:PropertyType
+      - browseName: di:ManufacturerUri
+        dataType: ua:String
+        value: https://byonoy.com
+        modellingRule: Optional
+        typeDefinition: ua:PropertyType
+      - browseName: di:Model
+        dataType: ua:LocalizedText
+        value:
+          locale: null
+          text: Absorbance 96
+        typeDefinition: ua:PropertyType
+      - browseName: di:DeviceManual
+        dataType: ua:String
+        value: https://byonoy.com/absorbance-96/
+        typeDefinition: ua:PropertyType
+  - browseName: AbsorbanceReaderLedType
+    subtypeOf: ns1:LADSComponentType
+    components:
+      - browseName: Wavelength
+        dataType: ua:Double
+        value: 450
+  - browseName: AbsorbanceReaderUnitType
+    subtypeOf: ns1:FunctionalUnitType
+    components:
+      - browseName: ns1:FunctionSet
+        displayName: Function Set
+        typeDefinition: ns1:FunctionSetType
+        components:
+          - browseName: AbsorbanceSensor
+            typeDefinition: ns1:AnalogSensorArrayFunctionType
+          - browseName: TemperatureSensor
+            typeDefinition: ns1:AnalogSensorFunctionType
+      - browseName: ns1:ProgramManager
+        displayName: Program Manager
+        typeDefinition: ns1:ProgramManagerType
+      - browseName: ns1:StateMachine
+        typeDefinition: ns1:FunctionalUnitStateMachineType
+      - browseName: ns1:Operational
+        typeDefinition: di:FunctionalGroupType
+instances:
+  - browseName: AbsorbanceReaderDevice
+    typeDefinition: AbsorbanceReaderDeviceType
+    componentOf: /ua:Objects/di:DeviceSet
