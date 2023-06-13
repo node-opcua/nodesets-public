@@ -4,8 +4,7 @@ namespaces:
   - di
   - machinery
   - alias: ns0
-    filename: >-
-      ../../../../../../../../support/opcua-lads/nodesets-public/Opc.Ua.AMB.NodeSet2.xml
+    filename: ./nodesets-public/Opc.Ua.AMB.NodeSet2.xml
     uri: http://opcfoundation.org/UA/AMB/
 namespaceMetadatas:
   - browseName: http://opcfoundation.org/UA/LADS/
@@ -941,7 +940,7 @@ objectTypes:
         typeDefinition: ProgramManagerType
       - browseName: SupportedPropertiesSet
         modellingRule: Optional
-        typeDefinition: 'SupportedPropertiesSetType '
+        typeDefinition: 'SupportedPropertiesSetType'
       - browseName: StateMachine
         typeDefinition: FunctionalUnitStateMachineType
       - browseName: Operational
@@ -1574,7 +1573,7 @@ objectTypes:
     subtypeOf: ua:FolderType
   - browseName: StartStopControlFunctionType
     subtypeOf: BaseControlFunctionType
-  - browseName: 'SupportedPropertiesSetType '
+  - browseName: 'SupportedPropertiesSetType'
     displayName: SupportedPropertiesSetType
     description: >-
       Set of properties which are supported as members of a properties list
@@ -1632,9 +1631,9 @@ objectTypes:
         typeDefinition: ua:TwoStateDiscreteType
   - browseName: VariableSetType
     subtypeOf: ua:FolderType
-instances:
-  - browseName: CtrlTi
-    dataType: ua:Double
-    value: 0
-    modellingRule: Optional
-    typeDefinition: ua:PropertyType
+# instances:
+#   - browseName: CtrlTi
+#     dataType: ua:Double
+#     value: 0
+#     modellingRule: Optional
+#     typeDefinition: ua:PropertyType
